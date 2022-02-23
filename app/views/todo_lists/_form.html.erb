@@ -13,10 +13,11 @@
 
   <div>
     <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: 'form-control' %> 
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="m-0 mt-3">
+    <%= form.submit @todo_list.id ? 'Update Todo List' : 'Create Todo List', :class => 'btn btn-primary'%>
+  
   </div>
 <% end %>

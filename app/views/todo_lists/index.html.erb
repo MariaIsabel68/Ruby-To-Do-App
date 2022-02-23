@@ -1,23 +1,28 @@
-<!-- DANDO BUG VISUAL NO HEADER, BOTEI NO APLLICATION HTML
-<p style="color: green"><%= notice %></p> 
--->
-
 <div class="card-header d-flex justify-content-between">
-  <span> 
+  <h4 class="m-0 text-dark"> 
     Todo Lists 
-  </span>
+  </h4>
   <%= link_to "New Todo List", new_todo_list_path, class: 'btn btn-primary btn-sm' %>
 </div>
 
-<ul class="list-group">
-  <% @todo_lists.each do |todo_list| %>
-
-  <%= render todo_list %>
-      <li class="list-group-item">
-        <%= link_to todo_list.title, todo_list %>
+<div class="card-body">
+  <ul class="list-group">
+    <% @todo_lists.each do |todo_list| %>
+      <%= link_to todo_list, class: 'text-decoration-none' do%>
+        <li class="list-group-item d-flex justify-content-between">
+          <div>
+            <h5 class="m-0 text-dark"> 
+              <b> <%= todo_list.title%> </b> 
+              <span class="badge badge-<%= todo_list.badge_color %>"><%= todo_list.status %></span>
+            </h5>
+            <p class="text-secondary m-0"> <small> <%= todo_list.percent_complete %>% Complete (<%= todo_list.completed_items %>/<%= todo_list.total_items %> Todo Items)</small></p>
+          </div>
       </li>
-  <% end %>
-</ul>
+    <%end%>
+    <%= render todo_list %>
+    <% end %>
+  </ul>
+</div>
 
 
 

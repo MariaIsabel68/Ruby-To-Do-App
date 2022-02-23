@@ -1,10 +1,30 @@
-<h1>Editing todo list</h1>
+<div class="card-header">
+  <div class="row">
+    <div class="col-1">
 
-<%= render "form", todo_list: @todo_list %>
+     <%= link_to @todo_list, class: 'btn btn-dark' do %>
+     <i class='fas fa-angle-left'></i>
+     <%end%>
+    </div>
 
-<br>
+    <div class="col-11">
+      <div class="d-flex justify-content-between">
+          <h4 class="m-0 mt-1"> 
+            <b> Editing todo list  </b> 
+          </h4>
+      </div>
+    </div>
+  </div>
+</div>
 
-<div>
-  <%= link_to "Show this todo list", @todo_list %> |
-  <%= link_to "Back to todo lists", todo_lists_path %>
+
+  <div class="card-body">
+    <h5 class="card-title">
+    
+    <%= render "form", todo_list: @todo_list %> 
+    <%= button_to "Delete This To do List", @todo_list, method: :delete, class: "btn btn-outline-danger" %>
+    
+    </h5>
+   
+  </div>
 </div>

@@ -70,4 +70,10 @@ export default class extends ApplicationController {
   // finalizeDance(element, reflex, noop, reflexId) {
   //   element.innerText = '\nNow, the cleanup can begin!'
   // }
+
+  markComplete() {
+    this.stimulate('TodoItemReflex#mark_complete')
+  }
+
+
 }

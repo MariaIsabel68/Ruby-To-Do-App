@@ -1,14 +1,33 @@
-<div class="card-header d-flex justify-content-between">
-  <div>
-    <h4 class="m-0"> 
-    <b> <%= @todo_list.title %> </b> 
-    <span class="badge badge-<%= @todo_list.badge_color %>"><%= @todo_list.status %></span>
-    </h4>
-    <p class="text-secondary m-0"> <small> <%= @todo_list.percent_complete %>% Complete (<%= @todo_list.completed_items %>/<%= @todo_list.total_items %> Todo Items)</small></p>
+<div class="card-header">
+  <div class="row">
+
+  <div class="col-1">
+
+  <%= link_to todo_lists_path, class: 'btn btn-dark' do %>
+    <i class='fas fa-angle-left'></i>
+  <%end%>
+
   </div>
 
-  <div>
-    <%= link_to "Edit", edit_todo_list_path(@todo_list), class:'btn btn-secondary mt-2' %> 
+  <div class="col-11">
+    <div class="d-flex justify-content-between">
+      <div>
+        <h4 class="m-0"> 
+          <b> <%= @todo_list.title %> </b> 
+          <span class="badge badge-<%= @todo_list.badge_color %>"><%= @todo_list.status %></span>
+        </h4>
+        <p class="text-secondary m-0"> <small> <%= @todo_list.percent_complete %>% Complete (<%= @todo_list.completed_items %>/<%= @todo_list.total_items %> Todo Items)</small></p>
+      </div>
+
+      <div>
+      <%= link_to "Edit", edit_todo_list_path(@todo_list), class:'btn btn-secondary mt-2' %> 
+      </div>
+    </div>
+
+
+  </div>
+
+  
   </div>
 </div>
 
@@ -54,7 +73,7 @@
 
             
              <%= link_to '#', class: "btn btn-info" do %>
-              <i class='fas fa-check' data-reflex="click->TodoItem#mark_complete" data-post-id="<%= todo_item.id %>"></i>
+              <i class='fas fa-check' data-action="click->todo-item#mark_complete" data-post-id="<%= todo_item.id %>" data-controller="todo-item"></i>
             <% end %>
           </div>
         </li>
