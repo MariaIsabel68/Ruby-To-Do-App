@@ -1,0 +1,47 @@
+
+<div class="card-header">
+  <div class="row">
+    
+    <div class="col-11">
+      <div class="d-flex justify-content-between">
+          
+          <h4 class="m-0 mt-1"> 
+            <b> &#128516;  &nbsp;  Bem-vindo(a) ao Ruby Todo App!  </b>
+          </h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <div class="card-body">
+    
+    <% if user_signed_in? %>
+
+        <ul>
+           <span class="mr-5"> Veja suas To Do Lists: </span>
+        	<%= link_to 'To Do Lists', todo_lists_path , class:"btn btn-primary" %>
+        </ul>
+      
+        <ul>
+           <span class="mr-5"> Ou saia da sua conta: </span>
+          <%= link_to 'Sair', destroy_user_session_path, 'data-turbo-method': :delete, class:"btn btn-primary" %>
+        </ul>
+        
+<% else %>
+
+        <ul>
+          <span class="mr-5" >Novo por aqui?</span>
+          <%= link_to 'Registre-se', new_user_registration_path , class:"btn btn-primary" %>
+        </ul>
+
+        
+        <ul>
+           <span class="mr-4" > Já é um membro? </span>
+          <%= link_to 'Login', new_user_session_path , class:"btn btn-primary" %>
+        </ul>
+  <% end %>
+
+
+  </div>
+</div>

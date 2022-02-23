@@ -1,13 +1,20 @@
 <div class="card-header d-flex justify-content-between">
   <h4 class="m-0 text-dark"> 
-    Todo Lists 
+  <%= link_to root_path, class: 'btn btn-dark mr-3' do %>
+        <i class='fas fa-angle-left'></i>
+      <%end%>
+    Todo Lists
   </h4>
   <%= link_to "New Todo List", new_todo_list_path, class: 'btn btn-primary btn-sm' %>
 </div>
 
 <div class="card-body">
   <ul class="list-group">
+  
     <% @todo_lists.each do |todo_list| %>
+    
+     <% if todo_list.user == current_user %>
+
       <%= link_to todo_list, class: 'text-decoration-none' do%>
         <li class="list-group-item d-flex justify-content-between">
           <div>
@@ -19,7 +26,12 @@
           </div>
       </li>
     <%end%>
+
+
     <%= render todo_list %>
+    
+    <% end %>
+    
     <% end %>
   </ul>
 </div>

@@ -1,0 +1,46 @@
+<div class="card-header">
+  <div class="row">
+    
+    <div class="col-11">
+      <div class="d-flex justify-content-between">
+          <h4 class="m-0 mt-1">
+          <%= link_to root_path, class: 'btn btn-dark mr-3' do %>
+            <i class='fas fa-angle-left'></i>
+          <%end%> 
+            <b>Login</b>
+          </h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="card-body">
+    
+    
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "current-password" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Log in", data: {turbo:false}, :class => 'btn btn-primary' %>
+  </div>
+  <% end %>
+
+  </div>
+</div>
+
+

@@ -1,5 +1,7 @@
 class TodoListsController < ApplicationController
   before_action :set_todo_list, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /todo_lists or /todo_lists.json
   def index
@@ -13,7 +15,8 @@ class TodoListsController < ApplicationController
 
   # GET /todo_lists/new
   def new
-    @todo_list = TodoList.new
+    #@todo_list = TodoList.new
+    @todo_list = current_user.todo_lists.build
   end
 
   # GET /todo_lists/1/edit
@@ -22,7 +25,9 @@ class TodoListsController < ApplicationController
 
   # POST /todo_lists or /todo_lists.json
   def create
-    @todo_list = TodoList.new(todo_list_params)
+    #@todo_list = TodoList.new(todo_list_params)
+
+    @todo_list = current_user.todo_lists.build(todo_list_params)
 
     respond_to do |format|
       if @todo_list.save
@@ -58,6 +63,12 @@ class TodoListsController < ApplicationController
     end
   end
 
+  def correct_user
+    @todo_list = current_user.todo_lists.find_by(id: params[:id])
+    redirect_to home_path, notice: "Not Authorized" if @todo_list.nil?
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_todo_list
@@ -66,6 +77,6 @@ class TodoListsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def todo_list_params
-      params.require(:todo_list).permit(:title)
+      params.require(:todo_list).permit(:title, :user_id)
     end
 end

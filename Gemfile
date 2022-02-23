@@ -76,3 +76,5 @@ end
 gem "stimulus_reflex", "~> 3.4.1"
 
 gem "webpacker", "~> 5.4.3"
+
+gem 'devise', '~> 4.8', '>= 4.8.1'

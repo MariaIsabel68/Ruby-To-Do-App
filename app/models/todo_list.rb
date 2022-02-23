@@ -1,5 +1,6 @@
 class TodoList < ApplicationRecord
   has_many :todo_items
+  belongs_to :user
 
   def percent_complete
     return 0 if total_items == 0
